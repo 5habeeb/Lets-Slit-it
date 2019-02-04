@@ -1,0 +1,50 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $l-size;
+  }
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+.input-group__item {
+  box-shadow: none;
+
+  margin-bottom: $s-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 $s-size 0 0;
+  }
+}
+
+.input-payment-title {
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid rgb(194, 38, 38) !important;
+  font-weight: 200;
+  color: black;
+  padding-left: 0;
+  width: 45%;
+  margin: 0 auto;
+}
+
+.input-group__item {
+  margin: 16px auto;
+  span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 8px;
+  }
+  select {
+    border: none;
+    border-bottom: 2px solid rgb(194, 38, 38);
+  }
+}

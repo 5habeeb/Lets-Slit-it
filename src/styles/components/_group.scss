@@ -1,0 +1,93 @@
+.group-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size 0;
+  margin-left: 40px;
+}
+
+.group-header__subtitle {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.payements-list-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.payements-list-items--left {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+
+  &-up {
+    font-size: 24px;
+  }
+
+  &-bottom {
+    font-size: 12px;
+  }
+}
+
+.payements-list-items--right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+
+  &-up {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &-bottom {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
+.balance-list-item-left {
+  margin-left: 50px;
+  font-size: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .big-txt {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+}
+
+.balance-list-item-right-red {
+  margin-right: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(204, 35, 35);
+}
+
+.balance-list-item-right-green {
+  margin-right: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(60, 161, 13);
+}
+
+.balance-list-item-right-black {
+  margin-right: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(1, 2, 0);
+}
+
+// add payment
+.add-payment {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
