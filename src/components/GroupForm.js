@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment'; // moment is the stadard for dates, always use it
-import { SingleDatePicker } from 'react-dates';
 import { connect } from 'react-redux';
+import DropDown from './card';
 
 class GroupForm extends React.Component {
   state = {
@@ -16,12 +16,6 @@ class GroupForm extends React.Component {
   onNameChange = e => {
     const name = e.target.value;
     this.setState(() => ({ name }));
-  };
-
-  onDateChange = createdAt => {
-    if (createdAt) {
-      this.setState(() => ({ createdAt }));
-    }
   };
 
   onFocusChange = ({ focused }) => {
@@ -45,7 +39,14 @@ class GroupForm extends React.Component {
     }
   };
 
+  addToMembers = member => {
+    this.setState({
+      members: [...this.state.members, member]
+    });
+  };
+
   render() {
+    const users = this.props.users;
     let members = this.state.members;
     const buttonText = this.props.group ? 'Save groups' : 'Add Group';
     return (
@@ -59,19 +60,13 @@ class GroupForm extends React.Component {
           value={this.state.name}
           onChange={this.onNameChange}
         />
-        <SingleDatePicker
-          date={this.state.createdAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={day => false}
-        />
-        {console.log(this.props.creator, this.props.users)}
+
         <h2>Members</h2>
         {members.map(member => (
           <div key={member.uid}>{member.displayName.split(' ')[0]}</div>
         ))}
+
+        <DropDown users={users} addToMembers={this.addToMembers} />
 
         <div>
           <button className="button">{buttonText}</button>

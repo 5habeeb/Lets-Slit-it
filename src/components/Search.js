@@ -2,24 +2,44 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GroupListItem from './GroupListItem';
 
-const Search = props => (
-  <div className="dashboard-container">
-    <input
-      className="text-input text-input--search"
-      type="text"
-      placeholder="Find Group"
-    />
-    <div className="list-body">
-      {props.groups.length === 0 ? (
-        <div className="list-item--message">
-          <span>No Groups</span>
+class Search extends React.Component {
+  state = {
+    groups: this.props.groups
+  };
+
+  onTextChange = e => {
+    let searchedVal = e.target.value;
+    let filteredGroups = this.props.groups.filter(group =>
+      group.name.includes(searchedVal)
+    );
+    this.setState({
+      groups: filteredGroups
+    });
+  };
+
+  render() {
+    let groups = this.state.groups;
+    return (
+      <div className="dashboard-container">
+        <input
+          className="text-input text-input--search"
+          type="text"
+          placeholder="Search groups"
+          onChange={this.onTextChange}
+        />
+        <div className="list-body">
+          {groups.length === 0 ? (
+            <div className="list-item--message">
+              <span>No Groups</span>
+            </div>
+          ) : (
+            groups.map(group => <GroupListItem key={group.id} {...group} />)
+          )}
         </div>
-      ) : (
-        props.groups.map(group => <GroupListItem key={group.id} {...group} />)
-      )}
-    </div>
-  </div>
-);
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

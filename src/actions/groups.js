@@ -11,7 +11,6 @@ export const startAddGroup = (groupData = {}) => {
     const { name = '', createdAt = 0, members = [uid] } = groupData;
 
     const group = { name, createdAt, members };
-    console.log(group);
 
     return database
       .ref(`groups`)
