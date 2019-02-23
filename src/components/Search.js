@@ -1,21 +1,30 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import GroupListItem from './GroupListItem';
 
-const Search = () => (
+const Search = props => (
   <div className="dashboard-container">
-    <button className="button button--search">serach</button>
-    <button className="button button--add">add</button>
     <input
       className="text-input text-input--search"
       type="text"
       placeholder="Find Group"
     />
-    <ul className="list-body">
-      <li className="list-item">Italy trip</li>
-      <li className="list-item">House</li>
-      <li className="list-item">Me & Mark</li>
-      <li className="list-item">Bob's brithday Party</li>
-    </ul>
+    <div className="list-body">
+      {props.groups.length === 0 ? (
+        <div className="list-item--message">
+          <span>No Groups</span>
+        </div>
+      ) : (
+        props.groups.map(group => <GroupListItem key={group.id} {...group} />)
+      )}
+    </div>
   </div>
 );
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    groups: state.groups
+  };
+};
+
+export default connect(mapStateToProps)(Search);

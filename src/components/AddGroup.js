@@ -1,36 +1,30 @@
 import React from 'react';
+import GroupForm from './GroupForm';
+import { connect } from 'react-redux';
+import { startAddGroup } from '../actions/groups';
 
-const AddGroup = () => (
-  <div className="dashboard-container">
-    <button className="button button--search">serach</button>
-    <button className="button button--add">add</button>
-    <input
-      className="text-input text-input--search"
-      type="text"
-      placeholder="Group Name"
-    />
-    <ul className="list-body">
-      <li className="list-item">
-        <span className="list-item__title">Mark</span>
-        <span className="list-item__sub-title">delete</span>
-      </li>
-      <li className="list-item">
-        <span className="list-item__title">Alice</span>
-        <span className="list-item__sub-title">delete</span>
-      </li>
-      <li className="list-item">
-        <input
-          className="text-input text-input--addMember"
-          type="text"
-          placeholder="Add member"
-        />
-        <span className="list-item__sub-title list-item--add-member">+</span>
-      </li>
-      <div className="center">
-        <button className="button button--save">Save</button>
+class AddGroupPage extends React.Component {
+  onSubmit = group => {
+    this.props.startAddGroup(group);
+    this.props.viewSearch();
+  };
+
+  render() {
+    return (
+      <div className="dashboard-container">
+        <div className="center">
+          <GroupForm onSubmit={this.onSubmit} />
+        </div>
       </div>
-    </ul>
-  </div>
-);
+    );
+  }
+}
 
-export default AddGroup;
+const mapDispatchToProps = dispatch => ({
+  startAddGroup: group => dispatch(startAddGroup(group))
+});
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(AddGroupPage);
