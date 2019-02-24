@@ -44,12 +44,6 @@ export class EditExpensePage extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.expenses);
-  const expense =
-    state.expenses.legnth > 0
-      ? state.expenses.find(expense => props.match.params.id === expense.id)
-      : state.groups.find(group => props.match.params.gid === group.id)
-          .expenses[props.match.params.id];
   return {
     expense: state.expenses.find(
       expense => props.match.params.id === expense.id

@@ -1,52 +1,142 @@
 import React from 'react';
 
-const BalancePage = () => (
-  <div className="content-container">
-    <div className="dashboard-container">
-      <div className="group-header">
-        <button className="button button--back "> Back to Groups</button>
-        <span className="group-header__subtitle">Stockholm Trip</span>
+class BalancePage extends React.Component {
+  state = {
+    paymentsArray: []
+  };
+
+  componentWillMount() {
+    this.getBalances();
+  }
+
+  getBalances = () => {
+    const { members, expenses } = this.props;
+    const numberOfMembers = members.length;
+    let totalExpenseVal = 0;
+    let people = [];
+
+    members.map(member => {
+      people.push({
+        ...member,
+        paid: 0,
+        paymentState: 0
+      });
+    });
+
+    for (let i = 0; i < expenses.length; i++) {
+      for (let j = 0; j < people.length; j++) {
+        if (expenses[i].payerId === people[j].uid) {
+          totalExpenseVal += expenses[i].amount;
+          let paid = people[j].paid + expenses[i].amount;
+          people[j] = {
+            ...people[j],
+            paid
+          };
+        }
+      }
+    }
+
+    people = this.getPeopleWithPaymenState(
+      people,
+      numberOfMembers,
+      totalExpenseVal
+    );
+    people = this.eliminatePeopleWithZeroPaymentSate(people);
+
+    let paymentsArray = [];
+
+    let fixedLoop = 10;
+    while (people.length >= 2 && fixedLoop) {
+      people = this.sortByPaymentstate(people);
+      let first = people[0];
+      let last = people[people.length - 1];
+
+      let transaction;
+      let fpState = first.paymentState;
+      let lpState = last.paymentState;
+
+      if (fpState >= lpState) {
+        transaction = Math.abs(lpState);
+        let paymentState = fpState + lpState >= 0.01 ? fpState + lpState : 0;
+        first = {
+          ...first,
+          paymentState
+        };
+        last = {
+          ...last,
+          paymentState: 0
+        };
+
+        paymentsArray.push({
+          from: last.displayName,
+          to: first.displayName,
+          val: transaction
+        });
+      } else {
+        transaction = fpState;
+        first = {
+          ...first,
+          paymentState: 0
+        };
+
+        let paymentState = lpState + fpState >= 0.01 ? lpState + fpState : 0;
+        last = {
+          ...last,
+          paymentState
+        };
+        paymentsArray.push({
+          from: first.displayName,
+          to: last.displayName,
+          val: transaction
+        });
+      }
+      people[0] = first;
+      people[people.length - 1] = last;
+
+      fixedLoop--;
+      people = this.eliminatePeopleWithZeroPaymentSate(people);
+    }
+    this.setState({
+      paymentsArray
+    });
+  };
+
+  sortByPaymentstate = people => {
+    return people.sort((a, b) => {
+      return b.paymentState - a.paymentState;
+    });
+  };
+
+  eliminatePeopleWithZeroPaymentSate = people => {
+    return people.filter(person => person.paymentState !== 0);
+  };
+
+  getPeopleWithPaymenState = (people, numberOfMembers, totalExpenseVal) => {
+    const mustPaidAmount = totalExpenseVal / numberOfMembers;
+    let peopleWithPaymenState = [];
+    people.map(person => {
+      const paymentState =
+        Math.round((person.paid - mustPaidAmount) * 1000) / 1000;
+      peopleWithPaymenState.push({
+        ...person,
+        paymentState
+      });
+    });
+    return peopleWithPaymenState;
+  };
+
+  render() {
+    let i = 0;
+    return (
+      <div>
+        {this.state.paymentsArray.map(payment => (
+          <div key={i++}>
+            {payment.from} owes {payment.to} {payment.val}
+          </div>
+        ))}
       </div>
-      <button className="button button--search">Payments</button>
-      <button className="button button--add">Balances</button>
-      <ul className="list-body">
-        <li className="list-item">
-          <div className="balance-list-item-left">
-            <span className="big-txt">You</span>
-            <span>owe</span>
-            <span className="big-txt">Ahmad</span>
-          </div>
-          <div className="balance-list-item-right-red">69 SEK</div>
-        </li>
-        <li className="list-item">
-          <div className="balance-list-item-left">
-            <span className="big-txt">Alice</span>
-            <span>owe</span>
-            <span className="big-txt">You</span>
-          </div>
-          <div className="balance-list-item-right-green">300 SEK</div>
-        </li>
-
-        <li className="list-item">
-          <div className="balance-list-item-left">
-            <span className="big-txt">Michal</span>
-            <span>owe</span>
-            <span className="big-txt">Ahmad</span>
-          </div>
-          <div className="balance-list-item-right-black">175 SEK</div>
-        </li>
-
-        <li className="list-item">
-          <div className="balance-list-item-left">
-            <span className="big-txt">Bob</span>
-            <span>owe</span>
-            <span className="big-txt">You</span>
-          </div>
-          <div className="balance-list-item-right-green">1126 SEK</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 export default BalancePage;

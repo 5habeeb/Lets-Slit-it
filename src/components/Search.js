@@ -8,6 +8,20 @@ class Search extends React.Component {
     groups: this.props.groups
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.groups !== this.props.groups) {
+      this.setState({
+        groups: this.props.groups
+      });
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      groups: this.props.groups
+    });
+  }
+
   onTextChange = e => {
     let searchedVal = e.target.value;
     let filteredGroups = this.props.groups.filter(group =>
@@ -34,7 +48,8 @@ class Search extends React.Component {
     return userGroups;
   };
   render() {
-    let usersGroups = this.getUsersGroups(this.state.groups);
+    let usersGroups = [];
+    usersGroups = this.getUsersGroups(this.state.groups);
 
     return (
       <div className="dashboard-container">

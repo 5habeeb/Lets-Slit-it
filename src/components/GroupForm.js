@@ -62,9 +62,13 @@ class GroupForm extends React.Component {
         />
 
         <h2>Members</h2>
-        {members.map(member => (
-          <div key={member.uid}>{member.displayName.split(' ')[0]}</div>
-        ))}
+        {members != undefined ? (
+          members.map(member => (
+            <div key={member.uid}>{member.displayName.split(' ')[0]}</div>
+          ))
+        ) : (
+          <div>You are the only user :(</div>
+        )}
 
         <DropDown users={users} addToMembers={this.addToMembers} />
 
