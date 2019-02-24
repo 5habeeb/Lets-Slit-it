@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GroupListItem from './GroupListItem';
+import { auth } from 'firebase';
 
 class Search extends React.Component {
   state = {
@@ -17,8 +18,24 @@ class Search extends React.Component {
     });
   };
 
+  getUsersGroups = allGroups => {
+    const userGroups = [];
+    allGroups.map(group => {
+      let isMember = false;
+      group.members.map(member => {
+        if (member.uid == this.props.userId) {
+          isMember = true;
+        }
+      });
+      if (isMember) {
+        userGroups.push(group);
+      }
+    });
+    return userGroups;
+  };
   render() {
-    let groups = this.state.groups;
+    let usersGroups = this.getUsersGroups(this.state.groups);
+
     return (
       <div className="dashboard-container">
         <input
@@ -28,12 +45,14 @@ class Search extends React.Component {
           onChange={this.onTextChange}
         />
         <div className="list-body">
-          {groups.length === 0 ? (
+          {usersGroups.length === 0 ? (
             <div className="list-item--message">
               <span>No Groups</span>
             </div>
           ) : (
-            groups.map(group => <GroupListItem key={group.id} {...group} />)
+            usersGroups.map(group => (
+              <GroupListItem key={group.id} {...group} />
+            ))
           )}
         </div>
       </div>
@@ -43,7 +62,8 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    groups: state.groups
+    groups: state.groups,
+    userId: state.auth.uid
   };
 };
 
