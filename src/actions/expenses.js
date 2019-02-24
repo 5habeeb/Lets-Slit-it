@@ -15,6 +15,7 @@ export const startAddExpense = (expenseData = {}) => {
     } = expenseData;
 
     const { groupId } = expenseData;
+    console.log(groupId);
     const payerId = getState().auth.uid;
     const expense = { description, note, amount, createdAt, payerId };
     return database
@@ -27,6 +28,7 @@ export const startAddExpense = (expenseData = {}) => {
             ...expense
           })
         );
+        dispatch(startSetExpenses(groupId));
       });
   };
 };
@@ -36,11 +38,11 @@ export const removeExpense = ({ id }) => ({
   id
 });
 
-export const startRemoveExpense = ({ id }) => {
+export const startRemoveExpense = ({ id }, groupId) => {
+  console.log(`users/${groupId}/expenses/${id}`);
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
     return database
-      .ref(`users/${uid}/expenses/${id}`)
+      .ref(`groups/${groupId}/expenses/${id}`)
       .remove()
       .then(() => {
         dispatch(removeExpense({ id }));
@@ -54,11 +56,10 @@ export const editExpense = (id, updates) => ({
   updates
 });
 
-export const startEditExpense = (id, updates) => {
+export const startEditExpense = (id, updates, groupId) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
     return database
-      .ref(`users/${uid}/expenses/${id}`)
+      .ref(`groups/${groupId}/expenses/${id}`)
       .update(updates)
       .then(() => {
         dispatch(editExpense(id, updates));

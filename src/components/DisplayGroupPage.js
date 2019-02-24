@@ -34,7 +34,7 @@ class DisplayGroupPage extends React.Component {
   };
 
   render() {
-    const groupId = window.location.pathname.replace('/group/', '');
+    const groupId = this.props.match.params.id;
     let expenses = this.props.expenses;
 
     let members = this.getGroupMembers(this.props.groups);
@@ -48,7 +48,11 @@ class DisplayGroupPage extends React.Component {
         {this.state.searchPageIsActive ? (
           <div>
             <ExpensesListFilters />
-            <ExpensesList expenses={expenses} members={members} />
+            <ExpensesList
+              expenses={expenses}
+              members={members}
+              groupId={groupId}
+            />
           </div>
         ) : (
           <AddExpensePage viewSearch={this.viewSearch} groupId={groupId} />

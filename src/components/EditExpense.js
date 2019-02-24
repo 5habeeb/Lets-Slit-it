@@ -1,20 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import {
+  startEditExpense,
+  startRemoveExpense,
+  startSetExpenses
+} from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
   onSubmit = expense => {
-    this.props.startEditExpense(this.props.expense.id, expense);
-    this.props.history.push('/dashboard');
+    const groupId = this.props.match.params.gid;
+    const expenseId = this.props.match.params.id;
+    this.props.startEditExpense(expenseId, expense, groupId);
+    this.props.history.push(`/group/${groupId}`);
   };
 
   handelClick = e => {
-    this.props.startRemoveExpense({ id: this.props.expense.id });
-    this.props.history.push('/dashboard');
+    const groupId = this.props.match.params.gid;
+    const expenseId = this.props.match.params.id;
+    this.props.startRemoveExpense({ id: expenseId }, groupId);
+    this.props.history.push(`/group/${groupId}`);
   };
 
   render() {
+    //console.log(this.props);
     return (
       <div>
         <div className="page-header">
@@ -35,6 +44,12 @@ export class EditExpensePage extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log(state.expenses);
+  const expense =
+    state.expenses.legnth > 0
+      ? state.expenses.find(expense => props.match.params.id === expense.id)
+      : state.groups.find(group => props.match.params.gid === group.id)
+          .expenses[props.match.params.id];
   return {
     expense: state.expenses.find(
       expense => props.match.params.id === expense.id
@@ -43,8 +58,11 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchTpProps = dispatch => ({
-  startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
-  startRemoveExpense: data => dispatch(startRemoveExpense(data))
+  startEditExpense: (id, expense, groupId) =>
+    dispatch(startEditExpense(id, expense, groupId)),
+  startRemoveExpense: (data, groupId) =>
+    dispatch(startRemoveExpense(data, groupId)),
+  startSetExpenses: groupId => dispatch(startSetExpenses(groupId))
 });
 
 export default connect(

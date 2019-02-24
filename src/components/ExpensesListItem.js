@@ -5,12 +5,21 @@ import numeral from 'numeral';
 
 class ExpensesListItem extends React.Component {
   render() {
-    const { description, amount, createdAt, id, payerId, members } = this.props;
-    const payerName = members.filter(member => member.uid == payerId)[0]
-      .displayName;
+    const {
+      description,
+      amount,
+      createdAt,
+      id,
+      payerId,
+      members,
+      groupId
+    } = this.props;
+    const payersArray = members.filter(member => member.uid == payerId);
+    const payerName =
+      payersArray != undefined ? payersArray[0].displayName : 'unknown';
 
     return (
-      <Link className="list-item" to={`/edit/${id}`}>
+      <Link className="list-item" to={`/edit/${groupId}/${id}`}>
         <div>
           <h3 className="list-item__title">{description}</h3>
           <span className="list-item__sub-title">

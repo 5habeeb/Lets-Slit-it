@@ -21,6 +21,7 @@ export const ExpensesList = props => (
             key={expense.id}
             {...expense}
             members={props.members}
+            groupId={props.groupId}
           />
         ))
       )}

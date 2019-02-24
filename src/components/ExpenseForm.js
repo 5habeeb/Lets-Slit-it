@@ -3,18 +3,6 @@ import moment from 'moment'; // moment is the stadard for dates, always use it
 import { SingleDatePicker } from 'react-dates';
 
 class ExpenseForm extends React.Component {
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //         description: props.expense ? props.expense.description : '',
-  //         note: props.expense ? props.expense.note : '',
-  //         amount: props.expense ? (props.expense.amount / 100).toString() : '',
-  //         createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
-  //         calendarFocused: false,
-  //         error: ''
-  //     }
-  // }
-
   state = {
     description: this.props.expense ? this.props.expense.description : '',
     note: this.props.expense ? this.props.expense.note : '',
@@ -35,9 +23,6 @@ class ExpenseForm extends React.Component {
   };
 
   OnNoteChange = e => {
-    //another way of using event
-    //e.persist();
-    //this.setState(() => ({ note: e.target.value }));
     const note = e.target.value;
     this.setState(() => ({ note }));
   };
