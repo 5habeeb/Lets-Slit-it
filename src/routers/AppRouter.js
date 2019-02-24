@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import DashboardPage from '../components/DashboardPage';
+import DisplayGroupPage from '../components/DisplayGroupPage';
 import PaymentsPage from '../components/PaymentsPage';
 import BalancePage from '../components/BalancePage';
 import AddPaymentPage from '../components/AddPaymentPage';
@@ -19,8 +20,7 @@ const AppRouter = () => (
         <PublicRoute path="/" component={LoginPage} exact={true} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/payments" component={PaymentsPage} />
-        <PrivateRoute path="/balance" component={BalancePage} />
-        <PrivateRoute path="/addpayment" component={AddPaymentPage} />
+        <PrivateRoute path="/group/:id" component={DisplayGroupPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

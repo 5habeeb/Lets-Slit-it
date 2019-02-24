@@ -4,7 +4,7 @@ import moment from 'moment';
 import numeral from 'numeral';
 
 const GroupListItem = ({ name, createdAt, id, members }) => (
-  <Link className="list-item" to={`/edit/${id}`}>
+  <Link className="list-item" to={`/group/${id}`}>
     <div>
       <h3 className="list-item__title">{name}</h3>
       <span className="list-item__sub-title">
