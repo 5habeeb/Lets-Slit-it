@@ -11,7 +11,7 @@ class Search extends React.Component {
   onTextChange = e => {
     let searchedVal = e.target.value;
     let filteredGroups = this.props.groups.filter(group =>
-      group.name.includes(searchedVal)
+      group.name.toLowerCase().includes(searchedVal.toLowerCase())
     );
     this.setState({
       groups: filteredGroups
