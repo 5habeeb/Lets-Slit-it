@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { startSetExpenses } from '../actions/expenses';
 import selectExpenses from '../selectors/Expenses';
 import BalancePage from './BalancePage';
+import { Link } from 'react-router-dom';
 
 class DisplayGroupPage extends React.Component {
   state = {
@@ -44,6 +45,10 @@ class DisplayGroupPage extends React.Component {
     return groups.filter(group => group.id == this.state.groupid)[0].members;
   };
 
+  getGroupName = groups => {
+    return groups.filter(group => group.id == this.state.groupid)[0].name;
+  };
+
   renderContent = () => {
     const groupId = this.props.match.params.id;
     let expenses = this.props.expenses;
@@ -72,13 +77,35 @@ class DisplayGroupPage extends React.Component {
     }
   };
 
+  handleBack() {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <div className="content-container">
-        <div>
-          <button onClick={this.viewSearch}>Search payments</button>
-          <button onClick={this.viewBalances}>Balances</button>
-          <button onClick={this.viewAdd}>Add payment</button>
+        <div className="group-header-container">
+          <Link className="Back-link" to="/dashboard">
+            &#x2190; Back to groups
+          </Link>
+          <h3>{this.getGroupName(this.props.groups)}</h3>
+        </div>
+        <div className="header-menu-container">
+          <button
+            className="button-menu-header button-border-right "
+            onClick={this.viewSearch}
+          >
+            Search payments
+          </button>
+          <button
+            className="button-menu-header button-border-right "
+            onClick={this.viewBalances}
+          >
+            Balances
+          </button>
+          <button className="button-menu-header" onClick={this.viewAdd}>
+            Add payment
+          </button>
         </div>
         {this.renderContent()}
       </div>

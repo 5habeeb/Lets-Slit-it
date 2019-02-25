@@ -12,7 +12,7 @@ const GroupListItem = ({ name, createdAt, id, members }) => (
       </span>
     </div>
     <div>
-      <h3 className="list-item__data">members count</h3>
+      <p className="list-item__data-members">{members.length} members</p>
     </div>
   </Link>
 );

@@ -50,7 +50,7 @@ class GroupForm extends React.Component {
     let members = this.state.members;
     const buttonText = this.props.group ? 'Save groups' : 'Add Group';
     return (
-      <form className="form" onSubmit={this.onSubmit}>
+      <form className="form" onSubmit={this.onSubmit} className="left">
         {this.state.error && <p className="form__error">{this.state.error}</p>}
         <input
           className="text-input"
@@ -61,10 +61,12 @@ class GroupForm extends React.Component {
           onChange={this.onNameChange}
         />
 
-        <h2>Members</h2>
+        <h2 className="members-header">Members</h2>
         {members != undefined ? (
           members.map(member => (
-            <div key={member.uid}>{member.displayName.split(' ')[0]}</div>
+            <li className="list-item member-item" key={member.uid}>
+              {member.displayName.split(' ')[0]}
+            </li>
           ))
         ) : (
           <div>You are the only user :(</div>
@@ -72,8 +74,8 @@ class GroupForm extends React.Component {
 
         <DropDown users={users} addToMembers={this.addToMembers} />
 
-        <div>
-          <button className="button">{buttonText}</button>
+        <div className="center">
+          <button className=" button button--save center">{buttonText}</button>
         </div>
       </form>
     );

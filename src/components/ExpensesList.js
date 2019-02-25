@@ -7,7 +7,6 @@ export const ExpensesList = props => (
   <div className="content-container">
     <div className="list-header">
       <div className="show-for-mobil">Expenses</div>
-      <div className="show-for-desktop">Expense</div>
       <div className="show-for-desktop">Amount</div>
     </div>
     <div className="list-body">

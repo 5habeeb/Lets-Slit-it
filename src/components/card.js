@@ -33,11 +33,13 @@ class DropDown extends Component {
     const users = this.state.users;
     return (
       <div>
-        <button onClick={this.showMenu}>Add a Friend</button>
+        <button className="dropbtn" onClick={this.showMenu}>
+          Add a Friend
+        </button>
 
         {this.state.showMenu ? (
           <div
-            className="menu"
+            className="dropdown-content"
             ref={element => {
               this.dropdownMenu = element;
             }}

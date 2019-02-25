@@ -34,6 +34,56 @@
   margin: $s-size;
 }
 
+// added new
+.header-menu-container {
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 0 $m-size;
+  max-width: 100rem;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.button-menu-header {
+  background: transparent;
+  font-size: 18px;
+  border: none;
+  margin: 8px 0;
+  padding: 16px;
+  font-weight: bold;
+  &:focus {
+    outline: 0 !important;
+  }
+
+  @media (max-width: 508px) {
+    font-size: 14px;
+    padding: 8px;
+    text-align: left;
+  }
+}
+
+.button-border-right {
+  border-right: 2px solid grey;
+  @media (max-width: 400px) {
+    border: none;
+  }
+}
+
+.vetical-divider {
+  display: inline-block;
+  width: 2px;
+  background-color: grey;
+  height: 48px;
+  margin-top: 12px;
+}
+
+// -----------------
+
 .button--save {
   border-radius: 5px;
   background-color: rgb(48, 196, 48);

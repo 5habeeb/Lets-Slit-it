@@ -12,7 +12,7 @@ class AddGroupPage extends React.Component {
   render() {
     return (
       <div className="dashboard-container">
-        <div className="center">
+        <div>
           <GroupForm onSubmit={this.onSubmit} />
         </div>
       </div>

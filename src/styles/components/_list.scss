@@ -17,7 +17,6 @@
 
 .list-item {
   border: 1px solid darken($off-white, 7%);
-  border-top: none;
   color: $dark-grey;
   display: flex;
   flex-direction: column;
@@ -56,8 +55,9 @@
 }
 
 .list-item__sub-title {
-  color: red;
+  color: grey;
   font-size: $font-size-small;
+  font-style: italic;
 }
 
 .list-item--add-member {
@@ -67,10 +67,49 @@
   margin-right: 2rem;
 }
 
+.list-item__data-members {
+  margin: $s-size 0 0 0;
+  color: #0073b1;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0;
+    padding-left: $s-size;
+  }
+}
+
 .list-item__data {
   margin: $s-size 0 0 0;
   @media (min-width: $desktop-breakpoint) {
     margin: 0;
     padding-left: $s-size;
   }
+}
+
+.member-item {
+  font-size: 18px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 2 solid #0073b1;
+  border-radius: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}
+
+.list-item-payment {
+  border-radius: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  span {
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
+
+.payment-amount {
+  margin: 0;
+  font-weight: bold;
 }

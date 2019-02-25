@@ -1,4 +1,5 @@
 import React from 'react';
+import PaymentListItem from './PaymentListItem';
 
 class BalancePage extends React.Component {
   state = {
@@ -128,12 +129,18 @@ class BalancePage extends React.Component {
   render() {
     let i = 0;
     return (
-      <div>
-        {this.state.paymentsArray.map(payment => (
-          <div key={i++}>
-            {payment.from} owes {payment.to} {payment.val}
-          </div>
-        ))}
+      <div className="content-container">
+        <div className="list-body">
+          {this.state.paymentsArray.length === 0 ? (
+            <div className="list-item--message">
+              <span>No payments found</span>
+            </div>
+          ) : (
+            this.state.paymentsArray.map(payment => (
+              <PaymentListItem key={i++} payment={payment} />
+            ))
+          )}
+        </div>
       </div>
     );
   }

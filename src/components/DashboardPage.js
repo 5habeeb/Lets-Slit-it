@@ -22,9 +22,16 @@ class DashboardPage extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <div>
-          <button onClick={this.viewSearch}>Search groups</button>
-          <button onClick={this.viewAdd}>Add group</button>
+        <div className="header-menu-container">
+          <button
+            className="button-menu-header button-border-right "
+            onClick={this.viewSearch}
+          >
+            Search groups
+          </button>
+          <button className="button-menu-header" onClick={this.viewAdd}>
+            Add group
+          </button>
         </div>
         {this.state.searchPageIsActive ? (
           <Search />

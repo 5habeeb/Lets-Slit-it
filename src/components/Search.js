@@ -52,7 +52,7 @@ class Search extends React.Component {
     usersGroups = this.getUsersGroups(this.state.groups);
 
     return (
-      <div className="dashboard-container">
+      <div className="dashboard-containers">
         <input
           className="text-input text-input--search"
           type="text"
