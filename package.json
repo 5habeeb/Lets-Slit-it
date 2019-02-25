@@ -1,9 +1,13 @@
 {
-  "name": "boilerplate-react-app",
+  "name": "letssplitit-react-app",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Andrew Mead",
+  "author": "Ahmad",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.7.0",
+    "node": "8.10.0"
+  },
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
