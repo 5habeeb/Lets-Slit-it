@@ -21,7 +21,7 @@ export class ExpensesListFilters extends React.Component {
           <div className="">
             <input
               className="text-input full-size"
-              placeholder="search expenses"
+              placeholder="search payments"
               type="text"
               defaultValue={this.props.filters.text}
               onChange={this.onTextChange}
