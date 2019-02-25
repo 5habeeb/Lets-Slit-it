@@ -73,6 +73,7 @@ export const setExpenses = expenses => ({
 });
 
 export const startSetExpenses = groupId => {
+  console.log('start set expenses');
   return (dispatch, getState) => {
     return database
       .ref(`groups/${groupId}/expenses`)

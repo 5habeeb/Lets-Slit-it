@@ -12,11 +12,29 @@ import { Link } from 'react-router-dom';
 class DisplayGroupPage extends React.Component {
   state = {
     contentToRender: 0,
-    groupid: window.location.pathname.replace('/group/', '')
+    groupid: window.location.pathname.replace('/group/', ''),
+    expenses: this.props.expenses
   };
 
   componentWillMount() {
+    this.setState({
+      expenses: []
+    });
     this.props.startSetExpenses(this.state.groupid);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.expenses !== this.props.expenses) {
+      this.setState({
+        expenses: this.props.expenses
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      expenses: []
+    });
   }
 
   componentDidMount() {
@@ -65,7 +83,7 @@ class DisplayGroupPage extends React.Component {
 
   renderContent = () => {
     const groupId = this.props.match.params.id;
-    let expenses = this.props.expenses;
+    let expenses = this.state.expenses;
     let members = this.getGroupMembers(this.props.groups);
 
     let contentToRender = this.state.contentToRender;

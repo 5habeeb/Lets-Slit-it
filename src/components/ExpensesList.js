@@ -10,6 +10,7 @@ export const ExpensesList = props => (
       <div className="show-for-desktop">Amount</div>
     </div>
     <div className="list-body">
+      {console.log(props.expenses.length)}
       {props.expenses.length === 0 ? (
         <div className="list-item--message">
           <span>No Expenses</span>

@@ -48,7 +48,7 @@ class GroupForm extends React.Component {
   render() {
     const users = this.props.users;
     let members = this.state.members;
-    const buttonText = this.props.group ? 'Save groups' : 'Add Group';
+    const buttonText = 'Save';
     return (
       <form className="form" onSubmit={this.onSubmit} className="left">
         {this.state.error && <p className="form__error">{this.state.error}</p>}

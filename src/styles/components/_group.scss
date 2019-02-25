@@ -105,8 +105,8 @@
 
   h3 {
     font-style: italic;
-    font-size: 20px;
-    margin-right: 20px;
+    font-size: 18px;
+    margin-right: 4px;
   }
 
   @media (max-width: 400px) {
@@ -125,6 +125,8 @@
   border: 1px solid grey;
   border-radius: 18px;
   padding: 4px 8px;
+  width: 114px;
+  height: 28px;
 
   @media (max-width: 400px) {
     font-size: 12px;

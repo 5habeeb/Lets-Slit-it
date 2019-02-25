@@ -16,7 +16,7 @@ class ExpensesListItem extends React.Component {
     } = this.props;
     const payersArray = members.filter(member => member.uid == payerId);
     const payerName =
-      payersArray != undefined ? payersArray[0].displayName : 'unknown';
+      payersArray.length !== 0 ? payersArray[0].displayName : 'unknown';
 
     return (
       <Link className="list-item" to={`/edit/${groupId}/${id}`}>

@@ -62,7 +62,7 @@ class ExpenseForm extends React.Component {
   };
 
   render() {
-    const buttonText = this.props.expense ? 'Save Expense' : 'Add Expense';
+    const buttonText = this.props.expense ? 'Save Payment' : 'Add Payment';
     return (
       <form className="form" onSubmit={this.onSubmit}>
         {this.state.error && <p className="form__error">{this.state.error}</p>}
@@ -92,7 +92,7 @@ class ExpenseForm extends React.Component {
         />
         <textarea
           className="textarea"
-          placeholder="Add a note for your expense (optional)"
+          placeholder="Add a note for your Payment (optional)"
           onChange={this.OnNoteChange}
           value={this.state.note}
         />
