@@ -54,7 +54,7 @@ class Search extends React.Component {
     return (
       <div className="dashboard-containers">
         <input
-          className="text-input text-input--search"
+          className="text-input text-input--search full-size"
           type="text"
           placeholder="Search groups"
           onChange={this.onTextChange}

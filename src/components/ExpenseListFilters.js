@@ -38,10 +38,10 @@ export class ExpensesListFilters extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <div className="input-group">
-          <div className="input-group__item">
+        <div className="">
+          <div className="">
             <input
-              className="text-input"
+              className="text-input full-size"
               placeholder="search expenses"
               type="text"
               defaultValue={this.props.filters.text}
@@ -49,7 +49,7 @@ export class ExpensesListFilters extends React.Component {
             />
           </div>
 
-          <div className="input-group__item">
+          <div className="input-group__item hide">
             <select
               className="select"
               value={this.props.filters.sortBy}
@@ -60,7 +60,7 @@ export class ExpensesListFilters extends React.Component {
             </select>
           </div>
 
-          <div className="input-group__item">
+          <div className="input-group__item hide">
             <DateRangePicker
               startDate={this.props.filters.startDate}
               endDate={this.props.filters.endDate}

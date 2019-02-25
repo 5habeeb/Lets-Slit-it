@@ -38,15 +38,10 @@
 .header-menu-container {
   min-height: 56px;
   margin: 0 auto;
-  padding: 0 $m-size;
+  padding: 0;
   max-width: 100rem;
   text-align: center;
   margin-bottom: 16px;
-
-  @media (max-width: 400px) {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .button-menu-header {
@@ -54,6 +49,7 @@
   font-size: 18px;
   border: none;
   margin: 8px 0;
+  width: auto;
   padding: 16px;
   font-weight: bold;
   &:focus {
@@ -62,16 +58,20 @@
 
   @media (max-width: 508px) {
     font-size: 14px;
-    padding: 8px;
-    text-align: left;
+    padding: 4px;
   }
+}
+
+.button-half-size {
+  width: 49%;
+}
+
+.button-third-size {
+  width: 33%;
 }
 
 .button-border-right {
   border-right: 2px solid grey;
-  @media (max-width: 400px) {
-    border: none;
-  }
 }
 
 .vetical-divider {
@@ -82,19 +82,28 @@
   margin-top: 12px;
 }
 
+.select-btn {
+  color: burlywood;
+}
+
 // -----------------
 
 .button--save {
   border-radius: 5px;
-  background-color: rgb(48, 196, 48);
-  width: 80%;
-  margin: 5rem auto;
+  background-color: #00b894;
+  width: 100%;
+  margin: 2rem auto;
 }
 
 .button--back {
   margin-left: -40px;
   border-radius: 5px;
   background-color: rgb(10, 129, 150);
+}
+
+.button--remove {
+  background-color: #e17055;
+  border-radius: 5px;
 }
 
 .button--add-expense {

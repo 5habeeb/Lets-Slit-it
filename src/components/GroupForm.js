@@ -53,7 +53,7 @@ class GroupForm extends React.Component {
       <form className="form" onSubmit={this.onSubmit} className="left">
         {this.state.error && <p className="form__error">{this.state.error}</p>}
         <input
-          className="text-input"
+          className="text-input full-size"
           type="text"
           placeholder="Group name"
           autoFocus={true}

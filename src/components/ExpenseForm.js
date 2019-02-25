@@ -97,7 +97,7 @@ class ExpenseForm extends React.Component {
           value={this.state.note}
         />
         <div>
-          <button className="button">{buttonText}</button>
+          <button className="button button--save">{buttonText}</button>
         </div>
       </form>
     );

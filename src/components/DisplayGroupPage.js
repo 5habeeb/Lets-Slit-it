@@ -23,19 +23,33 @@ class DisplayGroupPage extends React.Component {
     this.render();
   }
 
+  removeSelectClass = () => {
+    document.getElementById('search').classList.remove('select-btn');
+    document.getElementById('balances').classList.remove('select-btn');
+    document.getElementById('add').classList.remove('select-btn');
+  };
+
+  selectBtn = id => {
+    this.removeSelectClass();
+    document.getElementById(id).classList.add('select-btn');
+  };
+
   viewSearch = () => {
+    this.selectBtn('search');
     this.setState({
       contentToRender: 0
     });
   };
 
   viewAdd = () => {
+    this.selectBtn('add');
     this.setState({
       contentToRender: 1
     });
   };
 
   viewBalances = () => {
+    this.selectBtn('balances');
     this.setState({
       contentToRender: 2
     });
@@ -92,18 +106,24 @@ class DisplayGroupPage extends React.Component {
         </div>
         <div className="header-menu-container">
           <button
-            className="button-menu-header button-border-right "
+            className="button-menu-header button-border-right select-btn button-third-size"
             onClick={this.viewSearch}
+            id="search"
           >
-            Search payments
+            Payments
           </button>
           <button
-            className="button-menu-header button-border-right "
+            className="button-menu-header button-border-right button-third-size"
             onClick={this.viewBalances}
+            id="balances"
           >
             Balances
           </button>
-          <button className="button-menu-header" onClick={this.viewAdd}>
+          <button
+            className="button-menu-header button-third-size"
+            onClick={this.viewAdd}
+            id="add"
+          >
             Add payment
           </button>
         </div>

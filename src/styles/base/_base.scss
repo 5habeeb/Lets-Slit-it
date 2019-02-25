@@ -24,3 +24,13 @@ button:disabled {
 .is-active {
   font-weight: bold;
 }
+
+.hide {
+  display: none;
+}
+
+.full-size {
+  width: 100%;
+  border-radius: 5px;
+  margin: 16px 0;
+}
