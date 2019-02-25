@@ -125,8 +125,8 @@
   border: 1px solid grey;
   border-radius: 18px;
   padding: 4px 8px;
-  width: 114px;
-  height: 28px;
+  min-width: 114px;
+  min-height: 28px;
 
   @media (max-width: 400px) {
     font-size: 12px;

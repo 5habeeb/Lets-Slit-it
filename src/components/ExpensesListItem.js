@@ -27,7 +27,7 @@ class ExpensesListItem extends React.Component {
           </span>
         </div>
         <div>
-          <h4 className="list-item__data">
+          <h4 className="list-item__data right">
             {numeral(amount / 100).format('0,00.00') + ' SEK'}
           </h4>
           <span className="list-item__rb">{`paid by ${payerName}`}</span>
