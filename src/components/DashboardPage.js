@@ -34,7 +34,7 @@ class DashboardPage extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <div className="header-menu-container">
+        <div className="header-menu-container margin-top">
           <button
             className="button-menu-header button-border-right select-btn button-half-size"
             onClick={this.viewSearch}
