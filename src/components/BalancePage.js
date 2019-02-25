@@ -46,9 +46,10 @@ class BalancePage extends React.Component {
 
     let paymentsArray = [];
 
-    let fixedLoop = 10;
+    let fixedLoop = 100;
     while (people.length >= 2 && fixedLoop) {
       people = this.sortByPaymentstate(people);
+      console.log(people);
       let first = people[0];
       let last = people[people.length - 1];
 
@@ -96,6 +97,7 @@ class BalancePage extends React.Component {
 
       fixedLoop--;
       people = this.eliminatePeopleWithZeroPaymentSate(people);
+      console.log(people);
     }
     this.setState({
       paymentsArray
@@ -113,7 +115,8 @@ class BalancePage extends React.Component {
   };
 
   getPeopleWithPaymenState = (people, numberOfMembers, totalExpenseVal) => {
-    const mustPaidAmount = totalExpenseVal / numberOfMembers;
+    const mustPaidAmount =
+      Math.round((totalExpenseVal / numberOfMembers) * 1000) / 1000;
     let peopleWithPaymenState = [];
     people.map(person => {
       const paymentState =
